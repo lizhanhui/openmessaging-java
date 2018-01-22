@@ -18,6 +18,8 @@
 package io.openmessaging.internal;
 
 import io.openmessaging.KeyValue;
+import io.openmessaging.exception.OMSResourceNotExistException;
+import io.openmessaging.exception.OMSRuntimeException;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -61,8 +63,10 @@ public class DefaultKeyValue implements KeyValue {
 
     @Override
     public int getInt(String key) {
-        if (!properties.containsKey(key))
-            return 0;
+        // Should throw an exception, instead of quietly returning a default value.
+        if (!properties.containsKey(key)) {
+            throw new OMSRuntimeException("KEY_NOT_FOUND", "Key: " + key + " does not exist");
+        }
         return Integer.valueOf(properties.get(key));
     }
 
@@ -73,8 +77,9 @@ public class DefaultKeyValue implements KeyValue {
 
     @Override
     public long getLong(String key) {
-        if (!properties.containsKey(key))
-            return 0;
+        if (!properties.containsKey(key)) {
+            throw new OMSRuntimeException("KEY_NOT_FOUND", "Key: " + key + " does not exist");
+        }
         return Long.valueOf(properties.get(key));
     }
 
@@ -85,8 +90,9 @@ public class DefaultKeyValue implements KeyValue {
 
     @Override
     public double getDouble(String key) {
-        if (!properties.containsKey(key))
-            return 0;
+        if (!properties.containsKey(key)) {
+            throw new OMSRuntimeException("KEY_NOT_FOUND", "Key: " + key + " does not exist");
+        }
         return Double.valueOf(properties.get(key));
     }
 

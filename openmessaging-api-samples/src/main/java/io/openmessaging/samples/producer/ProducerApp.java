@@ -71,13 +71,12 @@ public class ProducerApp {
 
             result.addListener(new FutureListener<SendResult>() {
                 @Override
-                public void operationSucceeded(Future<SendResult> promise) {
-                    System.out.println("Send async message OK, message id is: " + promise.get().messageId());
-                }
-
-                @Override
-                public void operationFailed(Future<SendResult> promise) {
-                    System.out.println("Send async message Failed, cause is: " + promise.getThrowable().getMessage());
+                public void operationComplete(Future<SendResult> future) {
+                    if (future.get() != null) {
+                        System.out.println("Send async message OK, message id is: " + future.get().messageId());
+                    } else {
+                        System.out.println("Send async message Failed, cause is: " + future.getThrowable().getMessage());
+                    }
                 }
             });
         }

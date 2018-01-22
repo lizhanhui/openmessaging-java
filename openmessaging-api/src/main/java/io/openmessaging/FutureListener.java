@@ -26,17 +26,11 @@ package io.openmessaging;
  * @since OMS 1.0
  */
 public interface FutureListener<V> {
-    /**
-     * Invoked when the operation associated with the {@code Promise} has been completed successfully.
-     *
-     * @param future the source {@code Future} which called this callback
-     */
-    void operationSucceeded(Future<V> future);
 
     /**
-     * Invoked when the operation associated with the {@code Future} has been completed unsuccessfully.
+     * Invoked when the operation associated with the {@code Promise} has completed.
      *
      * @param future the source {@code Future} which called this callback
      */
-    void operationFailed(Future<V> future);
+    void operationComplete(Future<V> future);
 }

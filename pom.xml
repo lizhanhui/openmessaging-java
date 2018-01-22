@@ -59,6 +59,7 @@
         <module>openmessaging-admin</module>
         <module>openmessaging-benchmark</module>
         <module>openmessaging-api</module>
+        <module>openmessaging-api-wrapper</module>
         <module>openmessaging-api-samples</module>
     </modules>
 
