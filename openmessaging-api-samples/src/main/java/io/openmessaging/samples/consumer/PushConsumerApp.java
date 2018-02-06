@@ -19,6 +19,7 @@ package io.openmessaging.samples.consumer;
 
 import io.openmessaging.ResourceManager;
 import io.openmessaging.Message;
+import io.openmessaging.consumer.Context;
 import io.openmessaging.consumer.MessageListener;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
