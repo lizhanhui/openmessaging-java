@@ -23,6 +23,7 @@ import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSRuntimeException;
+import io.openmessaging.handler.Pipeline;
 
 /**
  * A {@code PullConsumer} pulls messages from the specified queue,
@@ -119,4 +120,6 @@ public interface PullConsumer extends ServiceLifecycle {
      * @throws OMSRuntimeException if the consumer fails to acknowledge the messages due to some internal error.
      */
     void ack(String messageId, KeyValue attributes);
+
+    Pipeline pipeline();
 }

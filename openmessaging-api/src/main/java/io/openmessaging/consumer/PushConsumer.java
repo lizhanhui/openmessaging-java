@@ -23,7 +23,7 @@ import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSRuntimeException;
-import io.openmessaging.interceptor.PushConsumerInterceptor;
+import io.openmessaging.handler.Pipeline;
 
 /**
  * A {@code PushConsumer} receives messages from multiple queues, these messages are pushed from
@@ -132,17 +132,5 @@ public interface PushConsumer extends ServiceLifecycle {
      */
     PushConsumer detachQueue(String queueName);
 
-    /**
-     * Adds a {@code PushConsumerInterceptor} instance to this consumer.
-     *
-     * @param interceptor an interceptor instance
-     */
-    void addInterceptor(PushConsumerInterceptor interceptor);
-
-    /**
-     * Removes an interceptor from this consumer.
-     *
-     * @param interceptor an interceptor to be removed
-     */
-    void removeInterceptor(PushConsumerInterceptor interceptor);
+    Pipeline pipeline();
 }

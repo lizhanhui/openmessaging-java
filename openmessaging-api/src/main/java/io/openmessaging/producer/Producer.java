@@ -28,7 +28,8 @@ import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSMessageFormatException;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.exception.OMSTimeOutException;
-import io.openmessaging.interceptor.ProducerInterceptor;
+import io.openmessaging.handler.Handler;
+import io.openmessaging.handler.Pipeline;
 
 /**
  * A {@code Producer} is a simple object used to send messages on behalf
@@ -103,7 +104,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * @throws OMSTimeOutException if the given timeout elapses before the send operation completes
      * @throws OMSRuntimeException if the {@code Producer} fails to send the message due to some internal error.
      */
-    SendResult send(Message message, LocalTransactionBranchExecutor branchExecutor, KeyValue attributes);
+    SendResult send(Message message, LocalTransactionExecutor branchExecutor, KeyValue attributes);
 
     /**
      * Sends a message to the specified destination asynchronously, the destination should be preset to
@@ -139,19 +140,11 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      *
      * @return a {@code BatchMessageSender} instance
      */
-    BatchMessageSender createBatchMessageSender();
+    BatchMessageSender batch();
 
     /**
-     * Adds a {@code ProducerInterceptor} to intercept send operations of producer.
-     *
-     * @param interceptor a producer interceptor
+     *  Returns associated pipeline
+     * @return a pipeline with a chain of {@link Handler} decorated
      */
-    void addInterceptor(ProducerInterceptor interceptor);
-
-    /**
-     * Removes a {@code ProducerInterceptor}
-     *
-     * @param interceptor a producer interceptor will be removed
-     */
-    void removeInterceptor(ProducerInterceptor interceptor);
+    Pipeline pipeline();
 }
