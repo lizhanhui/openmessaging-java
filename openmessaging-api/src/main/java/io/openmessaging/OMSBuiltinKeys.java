@@ -81,4 +81,6 @@ public interface OMSBuiltinKeys {
      * The {@code Routing} consists of a triple, include source queue, destination queue and expression.
      */
     String ROUTING_EXPRESSION = "ROUTING_EXPRESSION";
+
+    String CONSUME_MODEL = "CONSUME_MODEL";
 }
